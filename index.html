@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab5</title>
+</head>
+
+<body>
+    <script>
+        const numbers = [10, 25, 30, 15, 5, 40];
+        function sumNumbersGreaterThan20(arr) {
+            const filteredNumbers = arr.filter(number => number > 20);
+            const sum = filteredNumbers.reduce((total, number) => total + number, 0);
+            return sum;
+        }
+
+        const result = sumNumbersGreaterThan20(numbers);
+        document.write(`<h3>Question 1:</h3>`);
+        document.write(`<p>The sum of [10, 25, 30, 15, 5, 40] greater than 20 is: ${result}</p>`);
+    </script>
+
+    <script>
+        const getNewArray = function (arr) {
+            return arr.filter((str) => str.length >= 5 && str.includes("a"));
+        };
+        const arr2 = ["apple", "banana", "cat", "dog", "elephant", "fox", "grape"];
+        document.write(`<h3>Question 2:</h3>`);
+        document.write(`<p>All strings in ["apple", "banana", "cat", "dog", "elephant", "fox", "grape"] that length are greater than and equal to 5, and contains letter "a": ${getNewArray(arr2)}</p>`);
+    </script>
+
+    <script>
+        const concat = (str, arr1, arr2) => [...str.split(""), ...arr1, ...arr2];
+        document.write(`<h3>Question 3:</h3>`);
+        document.write(`<p>Concat of {"hi", [1, 2, 3], ["Hello", "world"]} is: ${concat("hi", [1, 2, 3], ["Hello", "world"])}</p>`);
+    </script>
+    <script>
+        const computeAverageGrade = (students) => {
+            return students.reduce((acc, student) => {
+                if (student.courses.includes("cs303")) {
+                    const average =
+                        student.grades.reduce((a, b) => a + b, 0) / student.grades.length;
+                    acc[student.name] = average;
+                }
+                return acc;
+            }, {});
+        };
+
+        const students = [
+            { name: "Quincy", grades: [99, 88], courses: ["cs301", "cs303"] },
+            { name: "Jason", grades: [29, 38], courses: ["cs201", "cs203"] },
+            { name: "Alexis", grades: [79, 78], courses: ["cs105", "cs211"] },
+            { name: "Sam", grades: [91, 82], courses: ["cs445", "cs303"] },
+            { name: "Katie", grades: [66, 77], courses: ["cs303", "cs477"] },
+        ];
+        const input =
+            `
+            &emsp;{ name: "Quincy", grades: [99, 88], courses: ["cs301", "cs303"] }<br/>
+            &emsp;{ name: "Jason", grades: [29, 38], courses: ["cs201", "cs203"] }<br/>
+            &emsp;{ name: "Alexis", grades: [79, 78], courses: ["cs105", "cs211"] }<br/>
+            &emsp;{ name: "Sam", grades: [91, 82], courses: ["cs445", "cs303"] }<br/>
+            &emsp;{ name: "Katie", grades: [66, 77], courses: ["cs303", "cs477"] }<br/>
+        `
+        const output = JSON.stringify(computeAverageGrade(students));
+
+        console.log(computeAverageGrade(students)); // Output: { Quincy: 93.5, Sam: 86.5, Katie: 71.5 }
+
+        document.write(`<h3>Question 4:</h3>`);
+        document.write(`<p>List of students:<br/>  ${input}</p>`);
+        document.write(`<p>Average Grade of each student whose is studying CS303 are: ${output}</p>`);
+    </script>
+</body>
+
+</html>
